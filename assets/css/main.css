@@ -121,18 +121,25 @@ p {
     background: rgba(255, 255, 255, var(--glass_opacity));
     -webkit-backdrop-filter: blur(var(--glass_blur));
     backdrop-filter: blur(var(--glass_blur));
+
+    --tiltX: 0deg;
+    --tiltY: 0deg;
+    --translateX: 0px;
+    transform: translate(var(--translateX), 0) perspective(800px) rotateX(var(--tiltX)) rotateY(var(--tiltY));
+
+    transition: all 0.1s;
 }
 
 .glass:nth-child(odd) {
-    transform: translate(calc(var(--glass_offset) * -1), 0);
+    --translateX: calc(var(--glass_offset) * -1);
 }
 
 .glass:nth-child(even) {
-    transform: translate(var(--glass_offset), 0);
+    --translateX: var(--glass_offset);
 }
 
 .glass:last-of-type {
-    transform: translate(0, 0);
+    --translateX: 0px;
 }
 
 .githubicon {
