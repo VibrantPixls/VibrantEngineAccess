@@ -4,11 +4,139 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Request Vibrant Engine access</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/main.css" media="all">
 </head>
-<body>
-  <h1>Request Vibrant Engine access</h1>
-  <p id="status">Sign in with GitHub to receive an invitation.</p>
-  <button id="login">Sign in with GitHub</button>
+<body style="background-color: #010303;">
+  <div id="background"></div>
+
+  <h1 class="special">Vibrant Engine</h1>
+  <h3>Vibrant Engine is a customized fork of UnrealEngineVite</h3>
+  <h4>based on my personal preferred configuration</h4>
+
+  <h1>Changes</h1>
+
+  <div class="glass">
+    <h2>Character class improvements</h2>
+    <ul>
+      <li>Ready-to-use PlayerCharacter class</li>
+      <li>Built-in run system</li>
+      <li>Better default character mesh and movement settings</li>
+    </ul>
+  </div>
+
+  <div class="glass">
+    <h2>AI improvements</h2>
+    <ul>
+      <li>Ready-to-use Smooth AI Controller class</li>
+      <li>AI look at target pitch fix</li>
+      <li>Better default AI settings</li>
+    </ul>
+  </div>
+
+  <div class="glass">
+    <h2>Blueprint node additions</h2>
+    <ul>
+      <li>Tick-based delay nodes</li>
+      <li>Nodes backported from UE5</li>
+      <li>ForLoop and ForEachLoop macros with continue</li>
+      <li>Newly added features in blueprint usable</li>
+    </ul>
+  </div>
+
+  <div class="glass">
+    <h2>Engine additions</h2>
+    <ul>
+      <li>r.FreezeFrame console command and helpers</li>
+      <li>In-menu seperate fps limit options</li>
+    </ul>
+  </div>
+
+  <div class="glass">
+    <h2>Audio additions</h2>
+    <ul>
+      <li>Parent-child sound class hierarchy</li>
+      <li>More default controller sound classes</li>
+      <li>Volume settings (master, music, SFX, etc) available in the GameUserSettings</li>
+      <li>Newly added features in blueprint usable</li>
+    </ul>
+  </div>
+
+  <div class="glass">
+    <h2>Plugin additions</h2>
+    <ul>
+      <li>Beter plugin enable defaults (unneeded ones off, useful ones on)</li>
+      <li>Bundled useful plugins</li>
+    </ul>
+  </div>
+
+  <div class="glass">
+    <h2>Assets additions</h2>
+    <ul>
+      <li>Added different additions to the engine that might be handy</li>
+    </ul>
+  </div>
+
+  <div class="glass">
+    <h2>Visual changes</h2>
+    <ul>
+      <li>More vibrant default color tuning</li>
+      <li>Pixelated (instead of blurry) game rendering when using low-resolution scaling</li>
+      <li>New default materials and textures</li>
+      <li>Beter default rendering settings</li>
+    </ul>
+  </div>
+
+  <div class="glass">
+    <h2>Editor changes</h2>
+    <ul>
+      <li>Slightly changed visuals</li>
+      <li>Better default editor settings</li>
+      <li>Better default blueprint graph settings</li>
+    </ul>
+  </div>
+
+  <div class="glass">
+    <h2>Packaging changes</h2>
+    <ul>
+      <li>Better default settings</li>
+      <li>SteamPipe optimized packaging settings</li>
+    </ul>
+  </div>
+
+  <div class="glass">
+    <h2>Naming changes</h2>
+    <ul>
+      <li>Graphics preset "Epic" renamed to "Ultra"</li>
+      <li>"High Quality Reflections" renamed to "Parallax Corrected Reflections"</li>
+    </ul>
+  </div>
+
+  <div class="glass">
+    <h2>And more!</h2>
+  </div>
+
+  <div class="glass">
+    <div class="titlerow">
+      <h2>Request</h2>
+      <h2 class="special">Vibrant Engine</h2>
+      <h2>access</h2>
+    </div>
+
+    <p>Sign in with GitHub to receive an invitation</p>
+    <h5>The verification bot ONLY reads public information</h5>
+
+    <button id="login">
+      <svg class="githubicon" viewBox="0 0 96 96" aria-hidden="true">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M48 0C21.49 0 0 21.49 0 48c0 21.21 13.75 39.2 32.82 45.55 2.4 0.44 3.28-1.04 3.28-2.31 0-1.14-0.04-4.17-0.07-8.19-13.35 2.9-16.17-6.44-16.17-6.44-2.18-5.55-5.33-7.03-5.33-7.03-4.36-2.98 0.33-2.92 0.33-2.92 4.82 0.34 7.36 4.95 7.36 4.95 4.28 7.34 11.23 5.22 13.97 3.99 0.43-3.1 1.67-5.22 3.04-6.42-10.66-1.21-21.87-5.33-21.87-23.73 0-5.24 1.87-9.53 4.94-12.89-0.49-1.21-2.14-6.1 0.47-12.71 0 0 4.03-1.29 13.2 4.92 3.83-1.07 7.94-1.6 12.02-1.62 4.08 0.02 8.19 0.55 12.02 1.62 9.16-6.21 13.18-4.92 13.18-4.92 2.62 6.61 0.97 11.5 0.48 12.71 3.08 3.36 4.93 7.65 4.93 12.89 0 18.45-11.23 22.5-21.92 23.69 1.72 1.48 3.26 4.41 3.26 8.89 0 6.42-0.06 11.6-0.06 13.18 0 1.28 0.86 2.78 3.3 2.3C82.26 87.19 96 69.2 96 48 96 21.49 74.51 0 48 0z"/>
+      </svg>
+      <span>Sign in with GitHub</span>
+    </button>
+  </div>
 
   <script src="assets/javascript/main.js"></script>
 </body>
