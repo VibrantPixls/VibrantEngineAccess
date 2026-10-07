@@ -30,7 +30,7 @@ if (code) {
                     txt_status.textContent = `${data.username} already has access.`;
                 } else if (data.error === "not_licensee") {
                     txt_status.textContent = "Access requires access to the Unreal Engine source code on GitHub. Link your GitHub and Epic account first, then try again.";
-                    button.hidden = false;
+                    login_button.hidden = false;
                 } else {
                     throw new Error(data.error);
                 }
