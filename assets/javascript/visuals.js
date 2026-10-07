@@ -1,5 +1,5 @@
 window.recallTriggers_Stats = function() {
-    const cards = document.querySelectorAll('.glass');
+    const cards = Array.from(document.querySelectorAll('.glass')).slice(0, -1);
     const intensity = 3;
 
     cards.forEach((card) => {

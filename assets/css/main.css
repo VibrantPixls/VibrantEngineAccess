@@ -3,6 +3,7 @@
 
     --glass_blur: 2.4em;
     --glass_opacity: 0.1;
+    --glass_opacity_last: 0.2;
 
     --glass_offset: 20em;
 
@@ -15,6 +16,8 @@
     --subtitle_size: 2em;
     --tutorial_size: calc(var(--title_size) * 0.5);
     --button_size: calc(var(--title_size) * 0.5);
+
+    --checkbox-size: 2em;
 }
 
 * {
@@ -149,6 +152,9 @@ p {
 
 .glass:last-of-type {
     --translateX: 0px;
+    width: min(60em, calc(100vw - 8em));
+
+    background: rgba(255, 255, 255, var(--glass_opacity_last));
 }
 
 .githubicon {
@@ -208,9 +214,28 @@ button:hover {
 #backgroundstatus {
     height: 100vh;
     width: 100vw;
-
     background-size: cover;
     background-position: center;
+}
+
+.eula-label {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+    margin-bottom: 1em;
+}
+
+.eula-label input[type="checkbox"] {
+    width: var(--checkbox-size);
+    height: var(--checkbox-size);
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+@keyframes wave {
+   50% {
+      transform: scale(0.9);
+   }
 }
 
 @keyframes pan-background {
