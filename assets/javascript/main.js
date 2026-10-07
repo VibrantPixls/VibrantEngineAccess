@@ -1,42 +1,18 @@
 const CLIENT_ID = "Ov23liovnEVoZEVSuJkm";
-const WORKER_URL = "https://vibrantengine-access.knortdm.workers.dev";
 
 const txt_status = document.getElementById("status");
 const login_button = document.getElementById("login");
+const eula_checkbox = document.getElementById("eula");
 
 login_button.onclick = () => {
+    if (!eula_checkbox.checked) {
+        txt_status.textContent = "Please confirm the Unreal Engine EULA statement first.";
+        return;
+    }
+    sessionStorage.setItem("eula_accepted", "1");
     const state = crypto.randomUUID();
     sessionStorage.setItem("oauth_state", state);
-    location.href = "https://github.com/login/oauth/authorize" + `?client_id=${CLIENT_ID}&scope=read:org&state=${state}`;
+    
+    const redirect = new URL("status.html", location.href).href;
+    location.href = "https://github.com/login/oauth/authorize" + `?client_id=${CLIENT_ID}&state=${state}&redirect_uri=${encodeURIComponent(redirect)}`;
 };
-
-const params = new URLSearchParams(location.search);
-const code = params.get("code");
-if (code) {
-    login_button.hidden = true;
-    history.replaceState(null, "", location.pathname);
-
-    if (params.get("state") !== sessionStorage.getItem("oauth_state")) {
-        txt_status.textContent = "Sign-in failed (state mismatch). Please try again.";
-        login_button.hidden = false;
-    } else {
-        txt_status.textContent = "Sending invitation...";
-
-        fetch(WORKER_URL, {method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ code }),
-            }).then((r) => r.json()).then((data) => {
-                if (data.status === "invited") {
-                    txt_status.textContent = `Invitation sent to ${data.username}. Check your email or github.com/notifications to accept it.`;
-                } else if (data.status === "already_has_access") {
-                    txt_status.textContent = `${data.username} already has access.`;
-                } else if (data.error === "not_licensee") {
-                    txt_status.textContent = "Access requires access to the Unreal Engine source code on GitHub. Link your GitHub and Epic account first, then try again.";
-                    login_button.hidden = false;
-                } else {
-                    throw new Error(data.error);
-                }
-            }).catch(() => {
-                txt_status.textContent = "Something went wrong. Please try again.";
-                login_button.hidden = false;
-            });
-    }
-}
