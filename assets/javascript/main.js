@@ -7,7 +7,7 @@ const login_button = document.getElementById("login");
 login_button.onclick = () => {
     const state = crypto.randomUUID();
     sessionStorage.setItem("oauth_state", state);
-    location.href = "https://github.com/login/oauth/authorize" + `?client_id=${CLIENT_ID}&state=${state}`;
+    location.href = "https://github.com/login/oauth/authorize" + `?client_id=${CLIENT_ID}&scope=read:org&state=${state}`;
 };
 
 const params = new URLSearchParams(location.search);
@@ -28,6 +28,9 @@ if (code) {
                     txt_status.textContent = `Invitation sent to ${data.username}. Check your email or github.com/notifications to accept it.`;
                 } else if (data.status === "already_has_access") {
                     txt_status.textContent = `${data.username} already has access.`;
+                } else if (data.error === "not_licensee") {
+                    txt_status.textContent = "Access requires access to the Unreal Engine source code on GitHub. Link your GitHub and Epic account first, then try again.";
+                    button.hidden = false;
                 } else {
                     throw new Error(data.error);
                 }
