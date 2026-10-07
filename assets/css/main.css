@@ -99,6 +99,12 @@ li {
     color: transparent;
 }
 
+.warning {
+    animation: warning-notify 0.5s both;
+    color: #f2311e;
+    filter: drop-shadow(0 0 0.2em #000000);
+}
+
 .special::before {
     content: "Vibrant Engine";
     position: absolute;
@@ -232,10 +238,11 @@ button:hover {
     cursor: pointer;
 }
 
-@keyframes wave {
-   50% {
-      transform: scale(0.9);
-   }
+@media (max-width: 900px) {
+    .glass:nth-child(odd),
+    .glass:nth-child(even) {
+        transform: none;
+    }
 }
 
 @keyframes pan-background {
@@ -247,9 +254,20 @@ button:hover {
     }
 }
 
-@media (max-width: 900px) {
-    .glass:nth-child(odd),
-    .glass:nth-child(even) {
-        transform: none;
-    }
+@keyframes warning-notify {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

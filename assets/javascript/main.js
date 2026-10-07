@@ -6,7 +6,10 @@ const eula_checkbox = document.getElementById("eula");
 
 login_button.onclick = () => {
     if (!eula_checkbox.checked) {
-        txt_status.textContent = "Please confirm the Unreal Engine EULA statement first.";
+        txt_status.textContent = "Please confirm the Unreal Engine EULA statement first";
+        txt_status.classList.remove("warning");
+        void txt_status.offsetWidth;
+        txt_status.classList.add("warning");
         return;
     }
     sessionStorage.setItem("eula_accepted", "1");
