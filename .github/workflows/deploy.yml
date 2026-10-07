@@ -27,19 +27,19 @@ jobs:
           node-version: '20'
 
       - name: Install Minification Tools
-        run: npm install -g terser csso-cli
+        run: npm install -g terser csso-cli html-minifier-terser
 
       - name: Minify js
         run: |
-          find . -name "*.js" ! -name "*.min.js" -exec terser {} -o {} -c -m \;
+          find . -type d \( -name node_modules -o -name .git \) -prune -o -name "*.js" ! -name "*.min.js" -exec terser {} -o {} -c --mangle false \;
 
       - name: Minify css
         run: |
-          find . -name "*.css" ! -name "*.min.css" -exec csso {} -o {} \;
+          find . -type d \( -name node_modules -o -name .git \) -prune -o -name "*.css" ! -name "*.min.css" -exec csso {} -o {} --restructure-off \;
 
       - name: Minify html
         run: |
-          find . -name "*.html" -exec html-minifier-terser {} -o {} --collapse-whitespace --remove-comments \;
+          find . -type d \( -name node_modules -o -name .git \) -prune -o -name "*.html" -exec html-minifier-terser {} -o {} --remove-comments \;
 
       - name: Upload GitHub Pages Artifact
         uses: actions/upload-pages-artifact@v3
