@@ -1,0 +1,68 @@
+# Vibrant Engine
+
+> Vibrant Engine is a customized fork of UnrealEngineVite (which is an Unreal Engine 4.27 fork), configured around the author's personal workflow and preferred settings. This site is the access request page: visitors authenticate with GitHub to receive an invitation to the private Vibrant Engine repository. This is done as the repository is forced private and can't be changed.
+
+Vibrant Engine is maintained by Vibrant Pixels. Because it is based on Unreal Engine source code, users NEED to have accepted the Unreal Engine End User License Agreement and have access to the Unreal Engine source code repository on GitHub before requesting access. The access-granting bot only reads public GitHub information, so it cannot verify this. The process relies on a kind of trust system, and users who do not meet these requirements are violating the Unreal Engine terms.
+
+## About the author
+- [Vibrant Pixels on GitHub](https://github.com/VibrantPixls): (previously Vibrant Pixel Productions) is an indie game developer and publisher based in the Netherlands, crafting small-scale casual gaming experiences.
+- [Website]: https://vibrant-pixels.com
+
+## Access
+- [Request Vibrant Engine access](https://vibrantpixls.github.io/VibrantEngineAccess/): Single-page site listing some engine's changes and providing the "Authorize with GitHub" button/action. Users must tick a checkbox confirming EULA acceptance and Unreal Engine source access before authorizing.
+
+## Features and changes
+> The full list of changes are readable on the Vibrant Engine repository wiki page. Below are just some of the changes.
+
+Character
+- Ready-to-use PlayerCharacter class with a built-in run system
+- Better default character mesh and movement settings
+
+AI
+- Ready-to-use Smooth AI Controller class
+- AI look-at-target pitch fix
+- Better default AI settings
+
+Blueprints
+- Tick-based delay nodes
+- Nodes backported from UE5
+- ForLoop and ForEachLoop macros with continue
+- Newly added engine features exposed to Blueprints
+
+Engine
+- r.FreezeFrame console command and helpers
+- Separate FPS limit options for when the user is in a menu.
+
+Audio
+- Parent-child sound class hierarchy
+- More default controller sound classes
+- Volume settings (master, music, SFX, etc.) available in GameUserSettings
+- Newly added audio features exposed to Blueprints
+
+Plugins
+- Better plugin enable defaults (unneeded ones off, useful ones on)
+- Bundled extra useful plugins
+
+Assets
+- Assorted extra engine assets that may be handy
+
+Visuals
+- More vibrant default color tuning
+- Pixelated (instead of blurry) rendering when using low-resolution scaling
+- New default materials and textures
+- Better default rendering settings
+
+Editor
+- Slightly changed visuals
+- Better default editor and Blueprint graph settings
+
+Packaging
+- Better default settings
+- SteamPipe-optimized packaging settings
+
+Naming
+- Graphics preset "Epic" renamed to "Ultra"
+- "High Quality Reflections" renamed to "Parallax Corrected Reflections"
+
+## Optional
+- Related project: UnrealEngineVite (also referred to as ueVite and UnrealEngineVite-PhysX), the upstream fork Vibrant Engine is built on.
