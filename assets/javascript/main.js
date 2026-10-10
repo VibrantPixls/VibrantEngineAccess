@@ -8,8 +8,8 @@ const answer_input = document.getElementById("answer");
 
 const stepNumbers = document.querySelectorAll('.stepnumber');
 function updateSteps() {
-    const eulaDone = eula.checked;
-    const answerDone = answer.value.trim() !== '';
+    const eulaDone = eula_checkbox.checked;
+    const answerDone = answer_input.value.trim() !== '';
 
     stepNumbers[0].classList.toggle('done', eulaDone);
     stepNumbers[1].classList.toggle('done', answerDone);
@@ -28,12 +28,13 @@ function updateSteps() {
     }
 }
 
-eula.addEventListener('change', updateSteps);
-answer.addEventListener('input', updateSteps);
+eula_checkbox.addEventListener('change', updateSteps);
+answer_input.addEventListener('input', updateSteps);
 updateSteps();
 
 login_button.onclick = () => {
-    if (!eula_checkbox.checked || !answer_input.value.trim()) {
+    answer = answer_input.value.trim();
+    if (!answer || !eula_checkbox.checked) {
         return;
     }
 
