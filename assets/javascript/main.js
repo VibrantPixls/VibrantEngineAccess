@@ -1,18 +1,45 @@
 const CLIENT_ID = "Ov23liovnEVoZEVSuJkm";
 
-const txt_status = document.getElementById("status");
 const login_button = document.getElementById("login");
+const loginText = login_button.querySelector('span');
+
 const eula_checkbox = document.getElementById("eula");
+const answer_input = document.getElementById("answer");
+
+const stepNumbers = document.querySelectorAll('.stepnumber');
+function updateSteps() {
+    const eulaDone = eula.checked;
+    const answerDone = answer.value.trim() !== '';
+
+    stepNumbers[0].classList.toggle('done', eulaDone);
+    stepNumbers[1].classList.toggle('done', answerDone);
+
+    const ready = eulaDone && answerDone;
+    login_button.disabled = !ready;
+
+    if (ready) {
+        loginText.textContent = 'Authorize with GitHub';
+    } else if (!eulaDone && !answerDone) {
+        loginText.textContent = 'Complete steps 1 and 2 first';
+    } else if (!eulaDone) {
+        loginText.textContent = 'Complete step 1 first';
+    } else {
+        loginText.textContent = 'Complete step 2 first';
+    }
+}
+
+eula.addEventListener('change', updateSteps);
+answer.addEventListener('input', updateSteps);
+updateSteps();
 
 login_button.onclick = () => {
-    if (!eula_checkbox.checked) {
-        txt_status.textContent = "Please confirm the Unreal Engine EULA statement first";
-        txt_status.classList.remove("warning");
-        void txt_status.offsetWidth;
-        txt_status.classList.add("warning");
+    if (!eula_checkbox.checked || !answer_input.value.trim()) {
         return;
     }
+
     sessionStorage.setItem("eula_accepted", "1");
+    sessionStorage.setItem("access_answer", answer);
+
     const state = crypto.randomUUID();
     sessionStorage.setItem("oauth_state", state);
     

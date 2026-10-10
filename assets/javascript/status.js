@@ -17,13 +17,21 @@ if (!code) {
 } else if (params.get("state") !== sessionStorage.getItem("oauth_state")) {
     fail("Sign-in failed (state mismatch). Please try again.");
 } else {
-    fetch(WORKER_URL, {method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ code, accepted: sessionStorage.getItem("eula_accepted") === "1" }),
+    fetch(WORKER_URL, {method: "POST", headers: { "Content-Type": "application/json" }, 
+        body: JSON.stringify({
+            code,
+            accepted: sessionStorage.getItem("eula_accepted") === "1",
+            answer: sessionStorage.getItem("access_answer"),
+        }),
     }).then((r) => r.json()).then((data) => {
         if (data.status === "invited") {
             txt_status.textContent = `Invitation sent to ${data.username}. Check your email or github.com/notifications to accept it.`;
         } else if (data.status === "already_has_access") {
             txt_status.textContent = `${data.username} already has access.`;
-        } else {
+        } else if (data.error === "wrong_answer") {
+            fail("That answer is incorrect. Check the commit and try again.");
+        }
+        else {
             throw new Error(data.error);
         }
     }).catch(() => {
